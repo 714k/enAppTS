@@ -20,7 +20,10 @@ export class CategoriesComponent implements OnInit {
 
   getAllVerbs(): void {
     this.verbsService.getAllVerbs()
-      .then(verbs => this.verbs = verbs);
+      .then(data => {
+        this.verbs = data;
+      })
+      .catch(error => console.log(error));
   }
 
 
@@ -30,13 +33,7 @@ export class CategoriesComponent implements OnInit {
   	let stringPath = path.split('/').join(' ');
   	
   	this.titleSection = stringPath.charAt(1).toUpperCase() + stringPath.slice(2);
-
-    let verbs = this.verbsService.getAllVerbs();
-    console.log('verbs: ', verbs);
-
-  	console.log('currentSection: ', path);
-  	console.log('titleSection: ', this.titleSection);
-
+    this.getAllVerbs();
   }
 
 }
