@@ -1,0 +1,8 @@
+<h1>{{ titleSection }}</h1>
+<mat-form-field floatPlaceholder="never" class="table-header">
+  <input type="text" matInput #filter placeholder="Filter verbs">
+</mat-form-field>
+
+<mat-list *ngFor="let verb of verbs">
+	<mat-list-item>{{ verb }}</mat-list-item>	
+</mat-list>
