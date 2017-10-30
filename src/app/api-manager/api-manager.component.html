@@ -1,0 +1,70 @@
+<h1>Verbs API Manager</h1>
+<mat-card class="form-container">
+	<mat-card-header>
+		<h2>Add verbs</h2>
+	</mat-card-header>
+
+	<mat-card-content>
+		<mat-form-field>
+	    <input matInput placeholder="Title" #title required>
+	  </mat-form-field>
+
+		<mat-form-field>
+	    <input matInput placeholder="Meaning" #meaning required>
+	  </mat-form-field>
+		
+		<mat-form-field class="field-image">
+	    <input matInput placeholder="Add one image" required>
+	  </mat-form-field>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+    Browse Files
+    <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+  	</button>
+
+		<h3>Verbal forms</h3>
+		<mat-form-field class="verbal-forms">
+	    <input matInput placeholder="Infinitive" #infinitive required>
+	  </mat-form-field>
+
+		<mat-form-field class="verbal-forms">
+	    <input matInput placeholder="Simple Past" #simplePast required>
+	  </mat-form-field>
+
+		<mat-form-field class="verbal-forms">
+	    <input matInput placeholder="Past Participle" #pastParticiple required>
+	  </mat-form-field>
+
+		<mat-form-field>
+	    <mat-select placeholder="Category" name="category" #category required>
+	    	<mat-option *ngFor="let category of categories" [value]="category.value">
+	    		{{ category.viewValue }}	
+	    	</mat-option>
+	    </mat-select>
+	  </mat-form-field>
+
+		<mat-form-field class="verb-examples">
+	    <input matInput placeholder="Add a few examples" #example [value]="example.value" required>
+	    <mat-hint align="start"><strong>You can add more examples after cilck on "Add Example" button</strong> </mat-hint>
+	  </mat-form-field>
+	  <button mat-raised-button color="primary" (click)="addExample(example.value); example.value=''">
+    Add Example
+  	</button>
+
+	  <button mat-raised-button color="primary" 
+	  (click)="addVerb({
+	  		title: title.value,
+	  		meaning: meaning.value,
+	  		form: {
+		  		infinitive: infinitive.value,
+		  		simplePast: simplePast.value,
+		  		pastParticiple: pastParticiple.value
+	  		},
+	  		category: category.value,
+	  		examples: []
+	  		})">
+    	Add Verb to API
+  	</button>
+
+
+	</mat-card-content>  
+</mat-card>

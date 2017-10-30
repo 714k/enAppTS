@@ -22,6 +22,7 @@ export class CategoriesComponent implements OnInit {
     this.verbsService.getAllVerbs()
       .then(data => {
         this.verbs = data;
+        console.log('data: ', data);
       })
       .catch(error => console.log(error));
   }

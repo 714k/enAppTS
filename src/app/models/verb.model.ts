@@ -1,9 +1,19 @@
 export class Verb {
+	id: number;
+	title: string;
+	meaning: string;
+	srcImg: string;
+	form: string;
+	category: string;
+	examples: ['']
+
+/*
   id: {
       type: Number,
       required: true,
       default: 0
   };
+ 
   title: {
       type: String,
       required: true,
@@ -46,4 +56,5 @@ export class Verb {
       required: true,
       default: ''
   };
+*/ 
 }

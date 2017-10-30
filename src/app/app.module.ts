@@ -16,6 +16,7 @@ import { ContentComponent } from './content/content.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { VerbComponent } from './verb/verb.component';
 import { CoverComponent } from './cover/cover.component';
+import { ApiManagerComponent } from './api-manager/api-manager.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { CoverComponent } from './cover/cover.component';
     ToolbarComponent,
     SidebarComponent,
     ContentComponent,
+    CoverComponent,
     CategoriesComponent,
     VerbComponent,
-    CoverComponent
+    ApiManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { CoverComponent } from './cover/cover.component';
     Angular2FontawesomeModule,
     SideBarRoutingModule,
     RouterModule.forRoot([
-      {path: '', redirectTo: '/home', pathMatch: 'full' }
+      {path: '', redirectTo: '/home', pathMatch: 'full' },
+      {path: 'api/v1/verbs/management', component: ApiManagerComponent}
     ])
   ],
   providers: [SidebarService],
