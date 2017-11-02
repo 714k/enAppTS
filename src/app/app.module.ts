@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { VerbsService } from './services/verbs.service';
 import { CommonModule, NgSwitch } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +40,7 @@ import { CoverComponent } from './cover/cover.component';
       {path: '', redirectTo: '/home', pathMatch: 'full' }
     ])
   ],
-  providers: [SidebarService],
+  providers: [SidebarService, VerbsService],
   bootstrap: [AppComponent, ToolbarComponent, SidebarComponent]
 })
 export class AppModule { }

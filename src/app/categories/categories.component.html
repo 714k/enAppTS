@@ -4,5 +4,5 @@
 </mat-form-field>
 
 <mat-list *ngFor="let verb of verbs">
-	<mat-list-item>{{ verb }}</mat-list-item>	
+	<mat-list-item><a href="/verbs/{{verb.title}}">{{ verb.title }}</a></mat-list-item>	
 </mat-list>

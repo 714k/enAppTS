@@ -1,28 +1,32 @@
+//import { BrowserModule } from '@angular/platform-browser'
 import { Component, OnInit } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
-import { Verb } from '../models/verb.model';
-import { VerbsService } from '../services/verbs.service';
 
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.less'],
-  providers: [VerbsService]
+  styleUrls: ['./categories.component.less']
 })
 
 export class CategoriesComponent implements OnInit {
 	public titleSection: any = "";
 	public currentSection: string = "";
-  public verbs: Verb[];
+  public verbs: [String];
+  private verbsUrl = 'http://localhost:3000/api/v1/verbs';
 
-  constructor(private router:Router, private verbsService: VerbsService) {}
+  constructor(private http: Http, private router: Router) {}
 
-  getAllVerbs(): void {
-    this.verbsService.getAllVerbs()
-      .then(verbs => this.verbs = verbs);
+    getAllVerbs() {
+    return this.http.get(this.verbsUrl)
+      .map((res: Response) => res.json().data)
+      .subscribe(verbs => {
+        console.log('verbs', verbs)
+        this.verbs = verbs;
+      });
   }
-
 
 
   ngOnInit(): void {
@@ -31,11 +35,11 @@ export class CategoriesComponent implements OnInit {
   	
   	this.titleSection = stringPath.charAt(1).toUpperCase() + stringPath.slice(2);
 
-    let verbs = this.verbsService.getAllVerbs();
-    console.log('verbs: ', verbs);
-
   	console.log('currentSection: ', path);
-  	console.log('titleSection: ', this.titleSection);
+    console.log('titleSection: ', this.titleSection);
+  	console.log('verbs: ', this.verbs);
+
+    this.getAllVerbs();
 
   }
 
